@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Usuario(models.Model):
     TIPO_CHOICES = [
@@ -6,6 +7,7 @@ class Usuario(models.Model):
         ('LOCATARIO', 'Locatário')
     ]
 
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil')
     nome = models.CharField(max_length=100)
     email = models.EmailField()
     telefone = models.CharField(max_length=15, blank=True, null=True)
